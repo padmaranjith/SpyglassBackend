@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.skillstorm.dtos.GoalDto;
 
@@ -21,7 +22,7 @@ public class GoalPlanner {
 	@Column(name="goal_id")
 	private int goalId;
 	@Column(name="user_id")
-	private int userId;
+	private String userId;
 	@Column(name="goal_name")
 	private String goalName;
 	@Column(name="description")
@@ -33,13 +34,15 @@ public class GoalPlanner {
 	@Column(name="saved_amount")
 	private double savedamount;
 	@Column(name="goal_imageurl")
-	private String GoalImageUrl;
+	private String goalImageUrl;
+	@Transient
+	private GoalDto goalDto;
 	
 	public GoalPlanner() {
 		
 	}
 		
-	public GoalPlanner(int goalId, int userId, String goalName, String description, Date targetDate,
+	public GoalPlanner(int goalId, String userId, String goalName, String description, Date targetDate,
 			double targetAmount, double savedamount, String goalImageUrl) {
 		super();
 		this.goalId = goalId;
@@ -49,18 +52,30 @@ public class GoalPlanner {
 		this.targetDate = targetDate;
 		this.targetAmount = targetAmount;
 		this.savedamount = savedamount;
-		GoalImageUrl = goalImageUrl;
+		this.goalImageUrl = goalImageUrl;
 	}
+	
+	public GoalPlanner(GoalDto goalDto) {
+		this.goalId = goalDto.getGoalId();
+		this.userId = goalDto.getUserId();
+		this.goalName = goalDto.getGoalName();
+		this.description = goalDto.getDescription();
+		this.targetDate = goalDto.getTargetDate();
+		this.targetAmount = goalDto.getTargetAmount();
+		this.savedamount = goalDto.getSavedamount();
+		this.goalImageUrl = goalDto.getGoalImageUrl();
+	}
+	
 	public int getGoalId() {
 		return goalId;
 	}
 	public void setGoalId(int goalId) {
 		this.goalId = goalId;
 	}
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getGoalName() {
@@ -94,14 +109,24 @@ public class GoalPlanner {
 		this.savedamount = savedamount;
 	}
 	public String getGoalImageUrl() {
-		return GoalImageUrl;
+		return goalImageUrl;
 	}
 	public void setGoalImageUrl(String goalImageUrl) {
-		GoalImageUrl = goalImageUrl;
+		this.goalImageUrl = goalImageUrl;
+	}
+	
+	
+
+	public GoalDto getGoalDto() {
+		return goalDto;
+	}
+
+	public void setGoalDto(GoalDto goalDto) {
+		this.goalDto = goalDto;
 	}
 
 	public GoalDto toDto() {
-		return new GoalDto(goalId, userId, goalName, description, targetDate, targetAmount, savedamount, GoalImageUrl);
+		return new GoalDto(goalId, userId, goalName, description, targetDate, targetAmount, savedamount, goalImageUrl);
 	}
 	
 	@Override
@@ -125,7 +150,7 @@ public class GoalPlanner {
 	public String toString() {
 		return "GoalPlanner [goalId=" + goalId + ", userId=" + userId + ", goalName=" + goalName + ", description="
 				+ description + ", targetDate=" + targetDate + ", targetAmount=" + targetAmount + ", savedamount="
-				+ savedamount + ", GoalImageUrl=" + GoalImageUrl + "]";
+				+ savedamount + ", GoalImageUrl=" + goalImageUrl + "]";
 	}
 	
 	

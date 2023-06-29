@@ -8,7 +8,7 @@ public class GoalDto {
 
 	
 	private int goalId;
-	private int userId;
+	private String userId;
 	private String goalName;
 	private String description;
 	private Date targetDate;
@@ -20,7 +20,7 @@ public class GoalDto {
 		
 	}
 	
-	public GoalDto(int goalId, int userId, String goalName, String description, Date targetDate, double targetAmount,
+	public GoalDto(int goalId, String userId, String goalName, String description, Date targetDate, double targetAmount,
 			double savedamount, String goalImageUrl) {
 		super();
 		this.goalId = goalId;
@@ -41,11 +41,11 @@ public class GoalDto {
 		this.goalId = goalId;
 	}
 
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
@@ -113,6 +113,14 @@ public class GoalDto {
 		GoalDto other = (GoalDto) obj;
 		return goalId == other.goalId;
 	}
+
+	@Override
+	public String toString() {
+		return "GoalDto [goalId=" + goalId + ", userId=" + userId + ", goalName=" + goalName + ", description="
+				+ description + ", targetDate=" + targetDate + ", targetAmount=" + targetAmount + ", savedamount="
+				+ savedamount + ", GoalImageUrl=" + GoalImageUrl + "]";
+	}
+	
 	
 	
 	

@@ -2,6 +2,7 @@ package com.skillstorm.controllers;
 
 import java.util.Map;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
+
 @Controller
-@CrossOrigin(allowCredentials = "true",originPatterns = "http://localhost:3000")
+@CrossOrigin(allowCredentials = "true", originPatterns = {"http://localhost:3000",
+"http://spyglass-project3.s3-website-us-east-1.amazonaws.com","http://localhost:5000"})
 public class LoginController {
 	
 	@Autowired
@@ -27,9 +30,10 @@ public class LoginController {
 	@Value("${frontend.url}")
 	private String frontEndUrl;
 
-	@GetMapping("/login")
-	public RedirectView loginView() {
-		RedirectView redirectView=new RedirectView(frontEndUrl);
+	@GetMapping("/signin")
+	public RedirectView redirectView() {
+		//RedirectView redirectView = new RedirectView("http://localhost:3000/creategoal");
+		RedirectView redirectView = new RedirectView(frontEndUrl);
 		return redirectView;
 	}
 	
@@ -43,27 +47,29 @@ public class LoginController {
 		return user.getAttributes();
 	}
 	
-	//Return access token
-	@GetMapping("/access")
-	@ResponseBody
-	public String access(Authentication auth) {
-		
-		if(auth instanceof OAuth2AuthenticationToken) {
-			OAuth2AuthenticationToken authToken =(OAuth2AuthenticationToken) auth;
-		  OAuth2AuthorizedClient client=	clientService.loadAuthorizedClient(authToken.getAuthorizedClientRegistrationId(),
-					authToken.getName());
-		  System.out.println("Principal name:"+client.getPrincipalName());
-		  System.out.println(client);
-		  return client.getAccessToken().getTokenValue();
-		}
-		return "No Token found";
-	}
+//	//Return access token
+//	@GetMapping("/access")
+//	@ResponseBody
+//	public String access(Authentication auth) {
+//		
+//		if(auth instanceof OAuth2AuthenticationToken) {
+//			OAuth2AuthenticationToken authToken =(OAuth2AuthenticationToken) auth;
+//		  OAuth2AuthorizedClient client=	clientService.loadAuthorizedClient(authToken.getAuthorizedClientRegistrationId(),
+//					authToken.getName());
+//		  System.out.println("Principal name:"+client.getPrincipalName());
+//		  System.out.println(client);
+//		  return client.getAccessToken().getTokenValue();
+//		}
+//		return "No Token found";
+//	}
+//	
+//	@GetMapping("/id")
+//	@ResponseBody
+//	public String idToken(@AuthenticationPrincipal OAuth2User user) {
+//		
+//		return ((DefaultOidcUser)user).getIdToken().getTokenValue();
+//		
+//	}
 	
-	@GetMapping("/id")
-	@ResponseBody
-	public String idToken(@AuthenticationPrincipal OAuth2User user) {
-		
-		return ((DefaultOidcUser)user).getIdToken().getTokenValue();
-		
-	}
+	
 }
