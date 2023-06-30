@@ -26,7 +26,10 @@ public class SecurityConfig {
 		//Configure CORS at the security level
 		httpSecurity.cors().configurationSource(request -> {
 			CorsConfiguration corsConfig = new CorsConfiguration();
-			corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:3000","http://spyglass-project3.s3.amazonaws.com/*","http://localhost:5000/*"));
+			corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:3000",
+					"http://spyglass-project3.s3.amazonaws.com",
+					"http://localhost:5000",
+"http://sg-project3-env.eba-x42sixpj.us-east-1.elasticbeanstalk.com"));
 			corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
 			corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
 			corsConfig.setAllowCredentials(true);
