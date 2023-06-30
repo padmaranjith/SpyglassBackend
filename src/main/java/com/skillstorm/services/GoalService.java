@@ -69,7 +69,7 @@ public class GoalService {
 	public void updateAmount(int goalId,double savedAmount) {
 		System.out.println("Updating saved amount in goal");
 		   GoalPlanner goal = goalRepository.findById(goalId)
-		            .orElseThrow();
+		            .orElseThrow(() -> new RuntimeException("Goal not found"));
 		        double newSavedAmount=goal.getSavedamount()+savedAmount;
 		   goal.setSavedamount(newSavedAmount);
 		        System.out.println("Goal before saving saved amount"+goal);
