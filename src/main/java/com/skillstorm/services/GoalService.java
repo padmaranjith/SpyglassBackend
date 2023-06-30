@@ -2,6 +2,7 @@ package com.skillstorm.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -29,7 +30,7 @@ public class GoalService {
 		return goalRepository.findByUserId(userId)
 				.stream()
 				.map(goal->goal.toDto())
-				.toList();
+				.collect(Collectors.toList());
 	}
 	
 	public void deleteGoalbyId(int id) {
