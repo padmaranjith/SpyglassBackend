@@ -23,7 +23,7 @@ import com.skillstorm.services.GoalService;
 
 
 @Controller
-@CrossOrigin(allowCredentials = "true", origins= {"http://localhost:3000",
+@CrossOrigin(allowCredentials = "true", originPatterns = {"http://localhost:3000",
 		"http://spyglass-project3.s3-website-us-east-1.amazonaws.com",
 		"http://localhost:5000","http://sg-project3-env.eba-x42sixpj.us-east-1.elasticbeanstalk.com",
 		"https://spyglass-project3.s3-website-us-east-1.amazonaws.com",

@@ -31,13 +31,18 @@ public class SecurityConfig {
 					"http://spyglass-project3.s3-website-us-east-1.amazonaws.com",
 					"http://localhost:5000",
 					"https://sg-project3-env.eba-x42sixpj.us-east-1.elasticbeanstalk.com",
-					"http://sg-project3-env.eba-x42sixpj.us-east-1.elasticbeanstalk.com"
-					));
+					"http://sg-project3-env.eba-x42sixpj.us-east-1.elasticbeanstalk.com"));
 			
 			corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
 			corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
 			corsConfig.setAllowCredentials(true);
 			corsConfig.setMaxAge(3600L);
+			corsConfig.setAllowedOriginPatterns(Arrays.asList("http://localhost:3000",
+					"https://spyglass-project3.s3-website-us-east-1.amazonaws.com",
+					"http://spyglass-project3.s3-website-us-east-1.amazonaws.com",
+					"http://localhost:5000",
+					"https://sg-project3-env.eba-x42sixpj.us-east-1.elasticbeanstalk.com",
+					"http://sg-project3-env.eba-x42sixpj.us-east-1.elasticbeanstalk.com"));
 			
 			
 			// Sets this corsconfig to  ALL requests
