@@ -1,6 +1,7 @@
 package com.skillstorm.controllers;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +77,6 @@ public class GoalController {
 	
 	@PutMapping("/{goalId}/savedamount")
 	public void updateAmount(@PathVariable int goalId, @RequestParam double savedAmount) {
-		System.out.println("In save amt controller "+savedAmount);
 	  goalService.updateAmount(goalId, savedAmount);
 	}
 

@@ -32,7 +32,7 @@ public class SecurityConfig {
 					"http://localhost:5000",
 					"https://sg-project3-env.eba-x42sixpj.us-east-1.elasticbeanstalk.com",
 					"http://sg-project3-env.eba-x42sixpj.us-east-1.elasticbeanstalk.com",
-					""));
+					"*"));
 			
 			corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
 			corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
